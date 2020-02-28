@@ -1,6 +1,6 @@
 "use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var is = require('is_js');
 /**
@@ -106,6 +106,12 @@ function getClientIp(req) {
 
     if (is.ip(req.headers.forwarded)) {
       return req.headers.forwarded;
+    } // Google Cloud App Engine
+    // https://cloud.google.com/appengine/docs/standard/go/reference/request-response-headers
+
+
+    if (is.ip(req.headers['x-appengine-user-ip'])) {
+      return req.headers['x-appengine-user-ip'];
     }
   } // Remote address checks.
 
